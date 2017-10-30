@@ -24,6 +24,23 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
         transition(
             'collapsed <=> expanded', [animate(500, style({height: '250px'})), animate(500)])
       ])],
+  transition('* => unloaded', [
+    animate(1000, keyframes([
+        style({
+            opacity: 1,
+            transform: 'scale3d(.475, .475, .475) translate3d(0, 60px, 0)',
+           'animation-timing-function': 'cubic-bezier(0.550, 0.055, 0.675, 0.190)',
+            offset: 0.4
+        }),
+        style({
+            opacity: 0,
+            transform: 'scale3d(.1, .1, .1) translate3d(0, -2000px, 0)',
+            'transform-origin': 'center bottom',
+            'animation-timing-function': 'cubic-bezier(0.175, 0.885, 0.320, 1)',
+            offset: 1
+        })
+    ]))
+])
   template: `
     <button (click)="expand()">Open</button>
     <button (click)="collapse()">Closed</button>
